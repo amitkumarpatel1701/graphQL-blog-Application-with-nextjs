@@ -32,26 +32,32 @@ const Header = () => {
 
   return (
     <div className='container mx-auto px-10 mb-8'>
-      <div className='border-b w-full inline-block border-blue-700 py-8'>
-        <div className='md:float-left block'>
+      <div className='border-b w-full border-blue-700 py-8 flex items-center justify-between'>
+        <div className='flex items-center gap-4'>
           <span className='cursor-pointer text-4xl text-white font-bold'>
             Dynamic Blog
           </span>
+          <Link href="/">
+            <span className='align-middle text-white ml-4 hidden md:inline'>Home</span>
+          </Link>
+          <Link href="/about">
+            <span className='align-middle text-white hidden md:inline'>About</span>
+          </Link>
+          <Link href="/profile">
+            <span className='align-middle text-white hidden md:inline'>Profile</span>
+          </Link>
         </div>
 
-        <div className='hidden md:float-left md:contents'>
+        <div className='flex items-center gap-4 align-middle'>
           {
             categories.map((category) => (
               <Link key={category.slug} href={`/category/${category.slug}`}>
-                <span className="md:float-right align-middle text-white ml-4">
+                <span className="align-middle text-white ml-4 hidden md:inline">
                   {category.name}
                 </span>
               </Link>
             ))
           }
-        </div>
-
-        <div className='hidden md:float-right md:contents align-middle'>
           <button
             type='button'
             onClick={toggleDataSource}
