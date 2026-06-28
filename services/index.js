@@ -1,5 +1,7 @@
+import { isOnline, fetchFromCMS } from './dataSource';
+
 // ----------------------------------------------------------------------------
-// Local mock data — the CMS is bypassed entirely so the app runs offline.
+// Local mock data — used in offline mode (the default).
 // The shapes match exactly what the components expect, so no other file
 // needs to change. Export names are kept identical to the original CMS
 // fetchers (getPosts, getRecentPost, getSimiliarPosts, getCategories).
@@ -85,15 +87,23 @@ const posts = [
   },
 ];
 
-// Shape matches the original GraphQL response: { postsConnection: { edges: [{ cursor, node }] } }
-export const getPosts = async () =>
-  posts.map((node, index) => ({ node, cursor: `mock-cursor-${index}` }));
+const mock = {
+  posts: async () =>
+    posts.map((node, index) => ({ node, cursor: `mock-cursor-${index}` })),
+  recentPosts: async () => posts.slice(0, 3),
+  similarPosts: async () => posts.slice(0, 3),
+  categories: async () => categories,
+};
 
-// Shape matches the original: posts(last: 3) ordered by createdAt_ASC
-export const getRecentPost = async () => posts.slice(0, 3);
-
-// Shape matches the original: related posts (same fields as getRecentPost)
-export const getSimiliarPosts = async () => posts.slice(0, 3);
-
-// Shape matches the original: [{ name, slug }]
-export const getCategories = async () => categories;
+// Each fetcher branches on the current data source at call time, so toggling
+// the switch in the Header takes effect immediately (after the page reload
+// the toggle triggers).
+export const getPosts = () => (isOnline() ? fetchFromCMS.posts() : mock.posts());
+export const getRecentPost = () =>
+  isOnline() ? fetchFromCMS.recentPosts() : mock.recentPosts();
+export const getSimiliarPosts = (categories, slug) =>
+  isOnline()
+    ? fetchFromCMS.similarPosts(slug, categories)
+    : mock.similarPosts(categories, slug);
+export const getCategories = () =>
+  isOnline() ? fetchFromCMS.categories() : mock.categories();
