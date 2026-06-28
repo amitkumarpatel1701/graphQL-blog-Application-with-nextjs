@@ -62,3 +62,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+// Dim the fixed background image in dark mode so dark cards stay readable.
+// The bg.jpg (body:before) remains visible but is muted by this overlay.
+html.dark body:after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
