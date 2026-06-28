@@ -26,11 +26,10 @@ const Header = () => {
         <div className='hidden md:float-left md:contents'>
           {
             categories.map((category) => (
-              <Link key={category.slug} href={`/category/${category.slug
-              }`}>
-                <spna className="md:float-right align-middle text-white ml-4">
+              <Link key={category.slug} href={`/category/${category.slug}`}>
+                <span className="md:float-right align-middle text-white ml-4">
                   {category.name}
-                </spna>
+                </span>
               </Link>
             ))
           }
