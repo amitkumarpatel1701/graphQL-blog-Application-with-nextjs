@@ -30,7 +30,7 @@ const PostDetail = ({ post }) => {
         />
       </div>
 
-      <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
         <div className="relative mb-8">
           <div className="absolute w-full h-full rounded-lg bg-black bg-opacity-40 flex items-center justify-center">
             <h1 className="text-center text-3xl lg:text-5xl font-semibold text-white px-4">
@@ -49,11 +49,11 @@ const PostDetail = ({ post }) => {
               className="align-middle rounded-full"
               src={author?.photo?.url}
             />
-            <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
+            <p className="inline align-middle text-gray-700 dark:text-gray-300 ml-2 font-medium text-lg">
               {author?.name}
             </p>
           </div>
-          <div className="font-medium text-gray-700">
+          <div className="font-medium text-gray-700 dark:text-gray-300">
             <span>{new Date(createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'short',
@@ -76,10 +76,10 @@ const PostDetail = ({ post }) => {
         )}
 
         <div className="px-4 lg:px-20">
-          <p className="text-lg text-gray-700 font-normal mb-8">{excerpt}</p>
+          <p className="text-lg text-gray-700 dark:text-gray-300 font-normal mb-8">{excerpt}</p>
 
           <h2 className="text-2xl font-semibold mb-4">Lorem Ipsum</h2>
-          <p className="text-lg text-gray-700 font-normal mb-8">
+          <p className="text-lg text-gray-700 dark:text-gray-300 font-normal mb-8">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -87,14 +87,14 @@ const PostDetail = ({ post }) => {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur.
           </p>
-          <p className="text-lg text-gray-700 font-normal mb-8">
+          <p className="text-lg text-gray-700 dark:text-gray-300 font-normal mb-8">
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum. Sed ut perspiciatis
             unde omnis iste natus error sit voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
             veritatis et quasi architecto beatae vitae dicta sunt explicabo.
           </p>
-          <p className="text-lg text-gray-700 font-normal mb-8">
+          <p className="text-lg text-gray-700 dark:text-gray-300 font-normal mb-8">
             Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
             fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
             sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia

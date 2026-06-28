@@ -44,8 +44,8 @@ Contains exported async fetchers. They currently return **local mock data** (no 
 - Post images come from `picsum.photos` in mock data and are loaded directly via `<img>` (`PostCard`, `PostWidget`, `PostDetail`) and `next/image` with `unoptimized` + the custom loader (`Header`/`PostCard` author photo). The custom loader is in the **root** `util.js`: `grpahCMSImageLoader = ({ src }) => src` (note misspelling is intentional/established). Pair it with `<Image unoptimized loader={grpahCMSImageLoader} ... />`.
 - For local static assets under `public/`, use direct paths or `next/image` normally.
 
-### Component Layout (`pages/components/`)
-Barrel-exported from `pages/components/index.js`: `PostCard`, `PostWidget`, `Categories`, `Layout`, `Header`.
+### Component Layout (`components/`)
+Barrel-exported from `components/index.js`: `PostCard`, `PostWidget`, `Categories`, `Layout`, `Header`. Lives at the project root (outside `pages/`), so Next.js does not try to route it.
 - `Layout` (`_app.js` wraps every page) injects `Header` above page content — global nav/categories live here.
 - `PostWidget` has **dual behavior**: on a post detail page it would accept `slug` + `categories` props and show "Related Posts"; as now called (no props) it shows "Recent Posts".
 - Categories are fetched client-side in `useEffect` (Header and Categories both call `getCategories()` independently).
